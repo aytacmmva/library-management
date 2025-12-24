@@ -61,6 +61,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getBooksFromLastTwoDays() {
         LocalDateTime twoDaysAgo = LocalDateTime.now().minusDays(2);
+        System.out.println(twoDaysAgo);
         return bookRepository.findRecentBooks(twoDaysAgo);
     }
 
