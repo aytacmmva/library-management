@@ -1,0 +1,47 @@
+package com.a100.librarymanagement.controller;
+
+import com.a100.librarymanagement.dto.UserDto;
+import com.a100.librarymanagement.entity.User;
+import com.a100.librarymanagement.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/users")
+@RequiredArgsConstructor
+public class UserController {
+
+    private final UserService userService;
+
+    @GetMapping("/search")
+    public User searchByEmail(@RequestParam String email) {
+        return userService.getByEmail(email);
+    }
+
+    @GetMapping("/get-by-id/{id}")
+    public UserDto getById(@PathVariable Integer id) {
+        return userService.getById(id);
+    }
+
+    @GetMapping("/get-all")
+    public List<UserDto> getAll() {
+        return userService.getAll();
+    }
+
+    @PostMapping("/create")
+    public void create(@RequestBody UserDto user) {
+        userService.create(user);
+    }
+
+    @PutMapping("/update/{id}")
+    public void update(@PathVariable Integer id, @RequestBody UserDto user) {
+        userService.update(id, user);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteByiD(@PathVariable Integer id) {
+        userService.deleteById(id);
+    }
+}
