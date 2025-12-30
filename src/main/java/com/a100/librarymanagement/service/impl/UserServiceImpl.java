@@ -1,12 +1,10 @@
 package com.a100.librarymanagement.service.impl;
 
 import com.a100.librarymanagement.dto.UserDto;
-import com.a100.librarymanagement.entity.Book;
 import com.a100.librarymanagement.entity.User;
-import com.a100.librarymanagement.exception.EmailAlreadyExistsException;
-import com.a100.librarymanagement.exception.UserNotFoundException;
+import com.a100.librarymanagement.exception.alreadyexist.EmailAlreadyExistsException;
+import com.a100.librarymanagement.exception.notfound.UserNotFoundException;
 import com.a100.librarymanagement.mapper.UserMapper;
-import com.a100.librarymanagement.repository.BookRepository;
 import com.a100.librarymanagement.repository.UserRepository;
 import com.a100.librarymanagement.service.UserService;
 import lombok.AccessLevel;
@@ -21,11 +19,11 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserServiceImpl implements UserService {
 
-   UserRepository userRepository;
+    UserRepository userRepository;
 
     @Override
     public UserDto getById(Integer id) {
-        User user = userRepository.findById(id).orElseThrow(()-> new UserNotFoundException(id));
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         return UserMapper.usertoUserDto(user);
     }
 
@@ -42,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(Integer id, UserDto userDto) {
-        User foundUser = userRepository.findById(id).orElseThrow(()-> new UserNotFoundException(id));
+        User foundUser = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         foundUser.setFullName(userDto.getFullName());
         foundUser.setEmail(userDto.getEmail());
         foundUser.setPassword(userDto.getPassword());
@@ -52,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(Integer id) {
-        User user = userRepository.findById(id).orElseThrow(()-> new UserNotFoundException(id));
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         userRepository.delete(user);
     }
 
@@ -63,6 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByEmail(String email) {
-        return userRepository.findByEmail(email).orElseThrow(()-> new EmailAlreadyExistsException(null));
+        return userRepository.findByEmail(email).orElseThrow(() -> new EmailAlreadyExistsException(null));
     }
+
 }

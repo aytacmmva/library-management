@@ -1,7 +1,6 @@
 package com.a100.librarymanagement.entity;
 
 import jakarta.persistence.*;
-import jdk.jfr.Category;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,14 +33,16 @@ public class Book {
 
     String language;
 
+    String categoryName;
+
+    String categoryId;
+
     LocalDateTime createdAt;
 
     @PrePersist
     public void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
-
-
 
 
 }

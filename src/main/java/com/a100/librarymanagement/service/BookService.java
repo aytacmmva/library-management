@@ -21,5 +21,4 @@ public interface BookService {
 
     List<Book> searchByName(String name);
 
-//    List<Book> getByCategory(Integer id);
 }

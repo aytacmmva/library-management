@@ -2,6 +2,7 @@ package com.a100.librarymanagement.service.impl;
 
 import com.a100.librarymanagement.dto.BookDto;
 import com.a100.librarymanagement.entity.Book;
+import com.a100.librarymanagement.exception.notfound.BookNotFoundException;
 import com.a100.librarymanagement.mapper.BookMapper;
 import com.a100.librarymanagement.repository.BookRepository;
 import com.a100.librarymanagement.service.BookService;
@@ -22,7 +23,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto getById(Integer id) {
-        Book book = bookRepository.findById(id).orElseThrow(null);
+        Book book = bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
 
         return BookMapper.bookToBookDto(book);
     }
@@ -58,6 +59,7 @@ public class BookServiceImpl implements BookService {
 
         bookRepository.save(book);
     }
+
     @Override
     public List<Book> getBooksFromLastTwoDays() {
         LocalDateTime twoDaysAgo = LocalDateTime.now().minusDays(2);
@@ -70,8 +72,4 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findByTitleContainingIgnoreCase(name);
     }
 
-//    @Override
-//    public List<Book> getByCategory(Integer id) {
-//        return bookRepository.findByCategoryId(id);
-//    }
 }

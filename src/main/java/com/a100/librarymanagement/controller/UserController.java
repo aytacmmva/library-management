@@ -3,17 +3,19 @@ package com.a100.librarymanagement.controller;
 import com.a100.librarymanagement.dto.UserDto;
 import com.a100.librarymanagement.entity.User;
 import com.a100.librarymanagement.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/search")
     public User searchByEmail(@RequestParam String email) {

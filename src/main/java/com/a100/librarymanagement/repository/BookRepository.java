@@ -10,11 +10,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface BookRepository  extends JpaRepository<Book,Integer> {
+public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findByTitleContainingIgnoreCase(String title);
-
-//    List<Book> findByCategoryId(Integer categoryId);
 
     @Query("SELECT b FROM Book b WHERE b.createdAt >= :startDate")
     List<Book> findRecentBooks(@Param("startDate") LocalDateTime startDate);
