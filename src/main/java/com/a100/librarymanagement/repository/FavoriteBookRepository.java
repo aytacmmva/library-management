@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface FavoriteBookRepository extends JpaRepository<FavoriteBook, Integer> {
 
-    Optional<FavoriteBook> findById(Integer id);
+    Optional<FavoriteBook> findByBookIdAndUserId(Integer bookId, Integer userId);
 
     List<FavoriteBook> findAllByUserIdOrderByCreatedDateDesc(Integer userId);
 

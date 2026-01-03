@@ -11,7 +11,7 @@ public class FavoriteBookMapper {
     public FavoriteBookResponse toDto(FavoriteBook entity) {
         FavoriteBookResponse dto = new FavoriteBookResponse();
         dto.setId(entity.getId());
-        dto.setFavoritebookId(entity.getFavoritebookId());
+        dto.setFavoritebookId(entity.getBookId());
         dto.setUserId(entity.getUserId());
         dto.setStatus(entity.getStatus().name());
         dto.setCreatedDate(entity.getCreatedDate().toString());

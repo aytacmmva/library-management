@@ -1,5 +1,6 @@
 package com.a100.librarymanagement.controller;
 
+import com.a100.librarymanagement.dto.FavoriteBookRequest;
 import com.a100.librarymanagement.dto.FavoriteBookResponse;
 import com.a100.librarymanagement.entity.FavoriteBook;
 import com.a100.librarymanagement.service.FavoriteBookService;
@@ -16,8 +17,8 @@ public class FavoriteBookController {
     private final FavoriteBookService favoriteService;
 
     @PostMapping("/add")
-    public ResponseEntity<FavoriteBookResponse> add(@RequestParam Integer userId, @RequestParam Integer bookId) {
-        return ResponseEntity.ok(favoriteService.addToFavorites(userId, bookId));
+    public ResponseEntity<FavoriteBookResponse> add(@RequestBody FavoriteBookRequest favoriteBookRequest) {
+        return ResponseEntity.ok(favoriteService.addToFavorites(favoriteBookRequest));
     }
 
     @GetMapping("/history")

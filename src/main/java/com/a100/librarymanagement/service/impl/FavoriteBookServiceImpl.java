@@ -1,5 +1,6 @@
 package com.a100.librarymanagement.service.impl;
 
+import com.a100.librarymanagement.dto.FavoriteBookRequest;
 import com.a100.librarymanagement.dto.FavoriteBookResponse;
 import com.a100.librarymanagement.entity.FavoriteBook;
 import com.a100.librarymanagement.enums.FavoriteBookStatus;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,11 +26,11 @@ public class FavoriteBookServiceImpl implements FavoriteBookService {
     FavoriteBookMapper mapper;
 
     @Override
-    public FavoriteBookResponse addToFavorites(Integer userId, Integer favoriteBookId) {
-        FavoriteBook favoriteBook = repository.findById(favoriteBookId).orElseThrow(() -> new FavoriteBookNotFoundException(" Favorite book not found"));
+    public FavoriteBookResponse addToFavorites(FavoriteBookRequest favoriteBookRequest) {
+        Optional<FavoriteBook> favoriteBook = repository.findByBookIdAndUserId(favoriteBookRequest.getBookId));
         FavoriteBook favoritebook = new FavoriteBook();
-        favoriteBook.setUserId(userId);
-        favoriteBook.setFavoritebookId(favoriteBookId);
+        favoriteBook.setUserId(favoriteBookRequest.getUserId());
+        favoriteBook.setBookId(favoriteBookRequest.getBookId());
         favoriteBook.setStatus(FavoriteBookStatus.ACTIVE);
         favoriteBook.setCreatedDate(LocalDateTime.now());
 

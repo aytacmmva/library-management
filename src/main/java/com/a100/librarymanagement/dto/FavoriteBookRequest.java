@@ -1,5 +1,6 @@
 package com.a100.librarymanagement.dto;
 
+import com.a100.librarymanagement.enums.FavoriteBookStatus;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,14 +11,12 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
-public class FavoriteBookResponse {
-    Integer id;
+public class FavoriteBookRequest {
 
     Integer bookId;
 
     Integer userId;
 
-    String status;
+    FavoriteBookStatus status;
 
-    String createdDate;
 }

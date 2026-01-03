@@ -15,14 +15,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "favoritebook")
+@Table(name = "favorite_book")
 public class FavoriteBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     Integer id;
 
-    Integer favoritebookId;
+    Integer bookId;
 
     Integer userId;
 
