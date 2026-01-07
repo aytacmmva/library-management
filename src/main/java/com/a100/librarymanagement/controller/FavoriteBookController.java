@@ -16,7 +16,7 @@ import java.util.List;
 public class FavoriteBookController {
     private final FavoriteBookService favoriteService;
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<FavoriteBookResponse> add(@RequestBody FavoriteBookRequest favoriteBookRequest) {
         return ResponseEntity.ok(favoriteService.addToFavorites(favoriteBookRequest));
     }
@@ -25,9 +25,12 @@ public class FavoriteBookController {
     public ResponseEntity<List<FavoriteBookResponse>> getHistory() {
         return ResponseEntity.ok(favoriteService.getAllByHistory());
     }
-
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<FavoriteBook>> getByUser(@PathVariable Integer userId) {
-        return ResponseEntity.ok(favoriteService.getByUserId(userId));
+    @GetMapping("/by-user-id/{userId}")
+    public List<FavoriteBookResponse> getAllByUserId(@PathVariable Integer userId) {
+        return favoriteService.getAllByUserId(userId);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteFromFavorites(@PathVariable Integer id) {
+        favoriteService.deleteFromFavorites(id);
     }
 }

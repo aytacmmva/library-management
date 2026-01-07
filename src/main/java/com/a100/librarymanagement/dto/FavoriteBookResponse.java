@@ -11,7 +11,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FavoriteBookResponse {
-    Integer id;
 
     Integer bookId;
 

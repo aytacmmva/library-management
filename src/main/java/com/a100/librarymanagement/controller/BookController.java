@@ -3,6 +3,8 @@ package com.a100.librarymanagement.controller;
 import com.a100.librarymanagement.dto.BookDto;
 import com.a100.librarymanagement.entity.Book;
 import com.a100.librarymanagement.service.BookService;
+
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,27 +29,28 @@ public class BookController {
         return bookService.getBooksFromLastTwoDays();
     }
 
-    @GetMapping("/books/{id}")
+    @GetMapping("/{id}")
     public BookDto getById(@PathVariable Integer id) {
         return bookService.getById(id);
     }
 
-    @GetMapping("/books")
-    public List<BookDto> getAll() {
-        return bookService.getAll();
+    @GetMapping
+    public Page<BookDto> getAll(@RequestParam(defaultValue = "0") int page,
+                                @RequestParam (defaultValue = "10") int size) {
+        return bookService.getAll(page,size);
     }
 
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
         bookService.deleteById(id);
     }
 
-    @PutMapping("/books/{id}")
+    @PutMapping("/{id}")
     public void update(@PathVariable Integer id, @RequestBody BookDto book) {
         bookService.update(id, book);
     }
 
-    @PostMapping("/books")
+    @PostMapping
     public void create(@RequestBody BookDto book) {
         bookService.create(book);
     }

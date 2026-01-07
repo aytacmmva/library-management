@@ -16,5 +16,5 @@ public interface FavoriteBookService {
 
     void deleteFromFavorites(Integer id);
 
-     List<FavoriteBook> getByUserId(Integer userId);
+
 }

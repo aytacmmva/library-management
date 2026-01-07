@@ -9,7 +9,12 @@ import com.a100.librarymanagement.service.BookService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,9 +34,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> getAll() {
-        List<Book> books = bookRepository.findAll();
-        return books.stream().map(BookMapper::bookToBookDto).toList();
+    public Page<BookDto> getAll(int page, int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<Book> bookPage = bookRepository.findAll(pageable);
+
+        return bookPage.map(BookMapper::bookToBookDto);
     }
 
     @Override
