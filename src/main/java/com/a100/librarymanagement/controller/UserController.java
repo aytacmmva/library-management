@@ -17,32 +17,32 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/search")
+    @GetMapping("/by-email")
     public User searchByEmail(@RequestParam String email) {
         return userService.getByEmail(email);
     }
 
-    @GetMapping("/get-by-id/{id}")
+    @GetMapping("/{id}")
     public UserDto getById(@PathVariable Integer id) {
         return userService.getById(id);
     }
 
-    @GetMapping("/get-all")
+    @GetMapping
     public List<UserDto> getAll() {
         return userService.getAll();
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public void create(@RequestBody UserDto user) {
         userService.create(user);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public void update(@PathVariable Integer id, @RequestBody UserDto user) {
         userService.update(id, user);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteByiD(@PathVariable Integer id) {
         userService.deleteById(id);
     }
