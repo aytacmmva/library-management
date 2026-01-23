@@ -1,7 +1,5 @@
 package com.a100.librarymanagement.dto;
 
-import com.a100.librarymanagement.enums.Role;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -15,17 +13,24 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserRequest {
+public class BookRequestDto {
 
     @NotNull
     @NotEmpty
     @NotBlank
-    String username;
+    String title;
 
-    @Email
-    String email;
+    String author;
 
-    String password;
+    Double price;
 
-    Role role;
+    Double discount;
+
+    String description;
+
+    String language;
+
+    String categoryName;
+
+    String categoryId;
 }

@@ -1,17 +1,20 @@
 package com.a100.librarymanagement.dto;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
-public class FavoriteBookResponse {
-
+@Builder
+public class FavoriteBookResponseDto {
+    @NotNull
+    @NotEmpty
+    @NotBlank
     Integer bookId;
 
     Integer userId;

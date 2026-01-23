@@ -1,7 +1,7 @@
 package com.a100.librarymanagement.mapper;
 
-import com.a100.librarymanagement.dto.FavoriteBookRequest;
-import com.a100.librarymanagement.dto.FavoriteBookResponse;
+import com.a100.librarymanagement.dto.FavoriteBookRequestDto;
+import com.a100.librarymanagement.dto.FavoriteBookResponseDto;
 import com.a100.librarymanagement.entity.FavoriteBook;
 import org.springframework.stereotype.Component;
 
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class FavoriteBookMapper {
 
-    public static FavoriteBookResponse toDto(FavoriteBook entity) {
-        FavoriteBookResponse dto = new FavoriteBookResponse();
+    public static FavoriteBookResponseDto toDto(FavoriteBook entity) {
+        FavoriteBookResponseDto dto = new FavoriteBookResponseDto();
         dto.setBookId(entity.getBookId());
         dto.setUserId(entity.getUserId());
         dto.setStatus(entity.getStatus().name());
@@ -18,7 +18,7 @@ public class FavoriteBookMapper {
         return dto;
     }
 
-    public static FavoriteBook toEntity(FavoriteBookRequest request) {
+    public static FavoriteBook toEntity(FavoriteBookRequestDto request) {
         FavoriteBook entity = new FavoriteBook();
         entity.setBookId(request.getBookId());
         entity.setUserId(request.getUserId());

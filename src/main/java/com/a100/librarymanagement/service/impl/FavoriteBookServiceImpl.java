@@ -1,9 +1,8 @@
 package com.a100.librarymanagement.service.impl;
 
-import com.a100.librarymanagement.dto.FavoriteBookRequest;
-import com.a100.librarymanagement.dto.FavoriteBookResponse;
+import com.a100.librarymanagement.dto.FavoriteBookRequestDto;
+import com.a100.librarymanagement.dto.FavoriteBookResponseDto;
 import com.a100.librarymanagement.entity.FavoriteBook;
-import com.a100.librarymanagement.enums.FavoriteBookStatus;
 import com.a100.librarymanagement.exception.alreadyexist.FavoriteBookAlreadyExistsException;
 import com.a100.librarymanagement.exception.notfound.FavoriteBookNotFoundException;
 import com.a100.librarymanagement.mapper.FavoriteBookMapper;
@@ -15,7 +14,6 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,7 +26,7 @@ public class FavoriteBookServiceImpl implements FavoriteBookService {
 
 
     @Override
-    public FavoriteBookResponse addToFavorites(FavoriteBookRequest favoriteBookRequest) {
+    public FavoriteBookResponseDto addToFavorites(FavoriteBookRequestDto favoriteBookRequest) {
         Optional<FavoriteBook> favoriteBook = repository
                 .findByBookIdAndUserId(favoriteBookRequest.getBookId(), favoriteBookRequest.getUserId());
 
@@ -44,7 +42,7 @@ public class FavoriteBookServiceImpl implements FavoriteBookService {
     }
 
     @Override
-    public List<FavoriteBookResponse> getAllByHistory() {
+    public List<FavoriteBookResponseDto> getAllByHistory() {
         List<FavoriteBook> list = repository.findAll();
         log.info("FavoritBook found successfully");
         return list.stream()
@@ -53,7 +51,7 @@ public class FavoriteBookServiceImpl implements FavoriteBookService {
     }
 
     @Override
-    public List<FavoriteBookResponse> getAllByUserId(Integer userId) {
+    public List<FavoriteBookResponseDto> getAllByUserId(Integer userId) {
         List<FavoriteBook> list = repository.findAllByUserIdOrderByCreatedDateDesc(userId);
 
         if (list.isEmpty()) {

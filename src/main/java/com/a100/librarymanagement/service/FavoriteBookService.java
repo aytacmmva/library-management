@@ -1,18 +1,16 @@
 package com.a100.librarymanagement.service;
 
-import com.a100.librarymanagement.dto.FavoriteBookRequest;
-import com.a100.librarymanagement.dto.FavoriteBookResponse;
-import com.a100.librarymanagement.entity.FavoriteBook;
-import org.jspecify.annotations.Nullable;
+import com.a100.librarymanagement.dto.FavoriteBookRequestDto;
+import com.a100.librarymanagement.dto.FavoriteBookResponseDto;
 
 import java.util.List;
 
 public interface FavoriteBookService {
-    FavoriteBookResponse addToFavorites( FavoriteBookRequest favoriteBookRequest);
+    FavoriteBookResponseDto addToFavorites(FavoriteBookRequestDto favoriteBookRequest);
 
-    List<FavoriteBookResponse> getAllByHistory();
+    List<FavoriteBookResponseDto> getAllByHistory();
 
-    List<FavoriteBookResponse> getAllByUserId(Integer userId);
+    List<FavoriteBookResponseDto> getAllByUserId(Integer userId);
 
     void deleteFromFavorites(Integer id);
 
