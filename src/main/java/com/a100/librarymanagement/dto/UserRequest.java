@@ -1,7 +1,10 @@
-package com.a100.librarymanagement.entity;
+package com.a100.librarymanagement.dto;
 
 import com.a100.librarymanagement.enums.Role;
-import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,23 +12,20 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+public class UserRequest {
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
     String username;
 
+    @Email
     String email;
 
     String password;
 
-    @Enumerated(EnumType.STRING)
     Role role;
-
 }

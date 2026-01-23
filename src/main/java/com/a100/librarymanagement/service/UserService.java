@@ -20,4 +20,5 @@ public interface UserService {
     List<User> searchByFullName(String fullName);
 
     User getByEmail(String email);
+
 }

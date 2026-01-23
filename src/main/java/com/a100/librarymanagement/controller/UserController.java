@@ -3,6 +3,7 @@ package com.a100.librarymanagement.controller;
 import com.a100.librarymanagement.dto.UserDto;
 import com.a100.librarymanagement.entity.User;
 import com.a100.librarymanagement.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<UserDto> getAll() {
         return userService.getAll();
     }

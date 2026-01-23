@@ -7,7 +7,7 @@ public class UserMapper {
 
     public static UserDto usertoUserDto(User user) {
         UserDto userdto = new UserDto();
-        userdto.setFullName(user.getFullName());
+        userdto.setUsername(user.getUsername());
         userdto.setEmail(user.getEmail());
         userdto.setPassword(user.getPassword());
         userdto.setRole(user.getRole());
@@ -16,7 +16,7 @@ public class UserMapper {
 
     public static User userDtoToUser(UserDto userdto) {
         User user = new User();
-        user.setFullName(userdto.getFullName());
+        user.setUsername(userdto.getUsername());
         user.setEmail(userdto.getEmail());
         user.setPassword(userdto.getPassword());
         user.setRole(userdto.getRole());
