@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -39,10 +40,12 @@ public class Book {
 
     LocalDateTime createdAt;
 
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    List<FavoriteBook> favoritedBy;
+
     @PrePersist
     public void onCreate() {
         this.createdAt = LocalDateTime.now();
     }
-
 
 }

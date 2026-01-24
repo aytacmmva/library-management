@@ -19,8 +19,15 @@ import java.time.LocalDateTime;
 public class FavoriteBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id", nullable = false)
+    Book book;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
 
     Integer bookId;
 
